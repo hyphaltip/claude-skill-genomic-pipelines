@@ -193,18 +193,35 @@ gatk MergeVcfs \
 ## Reference Files (GRCh38)
 
 ```bash
-# Download from GATK resource bundle
-GATK_BUNDLE="gs://genomics-public-data/resources/broad/hg38/v0"
+# Option 1: Broad Institute GATK Resource Bundle (public FTP - no auth required)
+# https://console.cloud.google.com/storage/browser/gcp-public-data--broad-references
+BROAD_FTP="https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0"
 
-# Reference genome
-gsutil cp ${GATK_BUNDLE}/Homo_sapiens_assembly38.fasta .
-gsutil cp ${GATK_BUNDLE}/Homo_sapiens_assembly38.fasta.fai .
-gsutil cp ${GATK_BUNDLE}/Homo_sapiens_assembly38.dict .
+wget ${BROAD_FTP}/Homo_sapiens_assembly38.fasta
+wget ${BROAD_FTP}/Homo_sapiens_assembly38.fasta.fai
+wget ${BROAD_FTP}/Homo_sapiens_assembly38.dict
+wget ${BROAD_FTP}/Homo_sapiens_assembly38.dbsnp138.vcf
+wget ${BROAD_FTP}/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+wget ${BROAD_FTP}/Homo_sapiens_assembly38.known_indels.vcf.gz
 
-# Known sites for BQSR
-gsutil cp ${GATK_BUNDLE}/Homo_sapiens_assembly38.dbsnp138.vcf .
-gsutil cp ${GATK_BUNDLE}/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz .
-gsutil cp ${GATK_BUNDLE}/Homo_sapiens_assembly38.known_indels.vcf.gz .
+# Option 2: NCBI (always public)
+# Reference genome (GRCh38 analysis set)
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
+gunzip GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
+
+# dbSNP (latest)
+wget https://ftp.ncbi.nih.gov/snp/latest_release/VCF/GCF_000001405.40.gz
+wget https://ftp.ncbi.nih.gov/snp/latest_release/VCF/GCF_000001405.40.gz.tbi
+
+# Option 3: Ensembl (public)
+wget https://ftp.ensembl.org/pub/release-110/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+wget https://ftp.ensembl.org/pub/release-110/variation/vcf/homo_sapiens/homo_sapiens-chr*.vcf.gz
+
+# Option 4: AWS iGenomes (public S3, no auth)
+aws s3 cp --no-sign-request s3://ngi-igenomes/igenomes/Homo_sapiens/GATK/GRCh38/ . --recursive
+
+# Option 5: Use nf-core (auto-downloads all references)
+nextflow run nf-core/sarek --genome GATK.GRCh38 ...
 ```
 
 ## Quality Metrics to Check

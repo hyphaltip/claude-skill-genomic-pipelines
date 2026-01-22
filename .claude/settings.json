@@ -1,0 +1,39 @@
+{
+  "skills": {
+    "genomics": {
+      "path": "skills/genomics.md",
+      "description": "Expert bioinformatics assistance for genomic data analysis pipelines",
+      "invocable": true
+    },
+    "genomics:wgs": {
+      "path": "skills/genomics-wgs.md",
+      "description": "WGS/WES variant calling pipeline (GATK, DeepVariant)",
+      "invocable": true
+    },
+    "genomics:rnaseq": {
+      "path": "skills/genomics-rnaseq.md",
+      "description": "RNA-seq analysis pipeline (bulk and single-cell)",
+      "invocable": true
+    },
+    "genomics:chipseq": {
+      "path": "skills/genomics-chipseq.md",
+      "description": "ChIP-seq and ATAC-seq analysis pipeline",
+      "invocable": true
+    },
+    "genomics:annotation": {
+      "path": "skills/genomics-annotation.md",
+      "description": "Variant annotation and clinical interpretation (VEP, ANNOVAR)",
+      "invocable": true
+    },
+    "genomics:qc": {
+      "path": "skills/genomics-qc.md",
+      "description": "Quality control and preprocessing for NGS data",
+      "invocable": true
+    },
+    "genomics:cnv": {
+      "path": "skills/genomics-cnv.md",
+      "description": "CNV and structural variant analysis (GATK CNV, CNVkit, Manta, DELLY)",
+      "invocable": true
+    }
+  }
+}

@@ -7,7 +7,7 @@ A collection of bioinformatics skills for [Claude Code](https://claude.ai/claude
 Clone this repository and Claude Code will automatically detect the skills when running in this directory:
 
 ```bash
-git clone https://github.com/your-username/claude_skill_genomics.git
+git clone https://github.com/hyphaltip/claude_skill_genomics.git
 cd claude_skill_genomics
 ```
 
